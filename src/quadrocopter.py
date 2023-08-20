@@ -1,0 +1,3 @@
+class Quadrocopter(object):
+    def __init__(self):
+        ...
