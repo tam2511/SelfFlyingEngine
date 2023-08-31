@@ -1,13 +1,10 @@
 from djitellopy import Tello
 from src.interfaces import InterfaceConnection, InterfaceAction
-from src.decorators import decorating_all_public_methods, access_session
 
 
-@decorating_all_public_methods(access_session)
 class TelloAPI(InterfaceConnection, InterfaceAction):
     def __init__(self, ip: str):
         self.__api = Tello(host=ip)
-        self.session = False
 
     def connect(self):
         self.__api.connect()
