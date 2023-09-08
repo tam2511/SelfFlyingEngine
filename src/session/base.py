@@ -11,7 +11,7 @@ class Session(object):
             quadcopter: Quadcopter
     ):
         if not isinstance(quadcopter, Quadcopter):
-            raise ValueError(f'{type(quadcopter)} is not {Quadcopter}')
+            raise TypeError(f'{type(quadcopter)} is not {Quadcopter}')
 
         if quadcopter in cls.__USED_QUADCOPTERS:
             raise UsageError(f'{quadcopter} is already in session')
