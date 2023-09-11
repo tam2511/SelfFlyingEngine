@@ -1,7 +1,7 @@
-from src import Quadcopter
+from src import Quadcopter, Session
 
 
 if __name__ == '__main__':
-    ip = '192.168.10.1'
-    Quadcopter('Tello', ip)
-
+    drone = Quadcopter('Tello', ip='192.168.10.1')
+    with Session(drone) as session:
+        pass

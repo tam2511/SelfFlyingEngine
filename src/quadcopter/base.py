@@ -1,4 +1,5 @@
 from src.api import TelloAPI
+from inspect import currentframe
 
 
 class Quadcopter(object):
@@ -25,4 +26,8 @@ class Quadcopter(object):
 
     @property
     def model(self):
+        frame = currentframe().f_back.f_code.co_qualname.split('.')[0]
+        if frame not in ('Session', 'Control'):
+            raise PermissionError('Unable to access model')
+
         return self.__model
