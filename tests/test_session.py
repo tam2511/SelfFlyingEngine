@@ -36,7 +36,7 @@ def test_property_active():
     assert session.active is False
 
 
-def test_one_session_cannot_close_another_session():
+def test_one_session_cannot_finish_another_session():
     drone = Quadcopter('Tello', ip='192.168.10.1')
     session1 = Session(drone)
     session1.finish()
