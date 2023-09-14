@@ -1,10 +1,10 @@
 from src.interfaces import InterfaceAction
-from src.decorators import decorating_all_public_methods, available_method
+from src.decorators import decorating_all_public_methods, ignored_method, available_method
 from src import Session
 from src.exceptions import UsageError
 
 
-@decorating_all_public_methods(available_method)
+@decorating_all_public_methods(ignored_method, available_method)
 class Control(InterfaceAction):
     __USED_SESSIONS = []
 

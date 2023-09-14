@@ -1,5 +1,7 @@
 import pytest
 from typing import Any
+from io import StringIO
+from contextlib import redirect_stdout
 from src import Quadcopter, Session, Control
 from src.exceptions import UsageError
 
@@ -70,13 +72,16 @@ def test_unable_to_use_methods_if_session_finished():
         control.takeoff()
 
 
-def test_unable_to_use_methods_if_autopilot_is_turn_on():
+def test_methods_ignored_if_autopilot_enabled():
     drone = Quadcopter('Tello', ip='192.168.10.1')
     session = Session(drone)
     control = Control(session, autopilot=True)
 
-    with pytest.raises(PermissionError):
+    context = StringIO()
+    with redirect_stdout(context):
         control.takeoff()
+
+    assert 'takeoff' in context.getvalue()
 
 
 @pytest.mark.parametrize('method_name', ['connect', 'disconnect', 'any'])

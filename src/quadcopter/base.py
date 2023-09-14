@@ -12,6 +12,9 @@ class Quadcopter(object):
             model: str,
             **kwargs
     ):
+        if not isinstance(model, str):
+            raise TypeError(f'{type(model)} is not {str}')
+
         if model not in cls.__AVAILABLE_MODELS:
             raise NameError(f'«{model}» model is not available')
 
