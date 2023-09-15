@@ -14,7 +14,7 @@ def test_instantiation_with_incorrect_model_name():
 
 def test_instantiation_with_invalid_input():
     with pytest.raises(TypeError):
-        Quadcopter(Any, ip='192.168.10.1')
+        Quadcopter(Any)
 
 
 def test_unable_to_get_property_model():

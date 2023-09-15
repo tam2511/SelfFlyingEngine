@@ -17,8 +17,8 @@ class Simulator(object):
             self,
             control: Control,
             *,
-            distance: int = 1,
-            degree: int = 1
+            distance: int = 10,
+            degree: int = 10
     ):
         self.__control = control
         self.__distance = distance
@@ -26,9 +26,9 @@ class Simulator(object):
         self.__run()
 
     def __run(self):
-        listener = Listener(on_release=self.__press, suppress=True)
-        listener.start()
-        listener.join()
+        self.__listener = Listener(on_release=self.__press, suppress=True)
+        self.__listener.start()
+        self.__listener.join()
 
     def __press(
             self,
@@ -36,7 +36,7 @@ class Simulator(object):
     ):
         match key:
             case Key.esc:
-                return False
+                self.__listener.stop()
 
             case Key.space:
                 self.__control.autopilot = not self.__control.autopilot
