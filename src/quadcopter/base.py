@@ -30,7 +30,7 @@ class Quadcopter(object):
     @property
     def model(self):
         frame = currentframe().f_back.f_code.co_qualname.split('.')[0]
-        if frame not in ('Session', 'Control'):
+        if frame not in ('Session', 'Control', 'RealTimeVideoStream'):
             raise PermissionError('Unable to access model')
 
         return self.__model

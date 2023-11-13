@@ -21,6 +21,8 @@ class Control(InterfaceAction):
         if session in cls.__USED_SESSIONS:
             raise UsageError(f'{session} is already under control')
 
+        cls.__USED_SESSIONS.append(session)
+
         return object.__new__(cls)
 
     def __init__(
@@ -31,7 +33,6 @@ class Control(InterfaceAction):
         self.__model = session.quadcopter.model
         self.__session = session
         self.__autopilot = autopilot
-        self.__class__.__USED_SESSIONS.append(session)
 
     @property
     def access(self):
