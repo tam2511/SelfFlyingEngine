@@ -1,7 +1,19 @@
 from abc import ABC, abstractmethod
 
 
-class InterfaceAction(ABC):
+class BaseAPI(ABC):
+    @abstractmethod
+    def connect(self):
+        pass
+
+    @abstractmethod
+    def disconnect(self):
+        pass
+
+    @abstractmethod
+    def get_frame_read(self):
+        pass
+
     @abstractmethod
     def takeoff(self):
         pass
